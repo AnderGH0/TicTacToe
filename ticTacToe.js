@@ -78,21 +78,21 @@ const winnerImg = (animal) => {
         catWins.appendChild(dogL);
         message.appendChild(catWins);
     }
-    if(animal === 'dog'){
+    else if(animal === 'dog'){
         const dogWins = document.createElement('div');
         dogWins.style.display = 'flex';
         dogWins.style.marginLeft = '100px';
         dogWins.style.justifyContent = 'space-around';
-        catWins.style.marginTop = '20px';
+        dogWins.style.marginTop = '20px';
         const dogW = document.createElement('img');
         dogW.src = 'img/dog-w.png';
         dogW.style.width = '150px';
         dogW.style.marginLeft = '-100px';
         const catL = document.createElement('img');
         catL.src = 'img/cat-l.png';
+        catL.style.marginLeft = '-390px';
         catL.style.width = '150px';
         catL.style.height = '150px';
-        catL.style.marginLeft = "-350px";
         dogWins.appendChild(dogW);
         dogWins.appendChild(catL);
         message.appendChild(dogWins);
