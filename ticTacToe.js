@@ -18,6 +18,7 @@ let p1Turn = true;
 let choices = ['','','','','','','','',''];
 const cells = [];
 
+// turn of the game
 const turn = (cell, index) => {
     if(gameOn){
         if(cell.firstChild === null){
@@ -28,6 +29,7 @@ const turn = (cell, index) => {
                 cell.appendChild(cat);
                 cell.style.backgroundColor = 'whitesmoke';
                 choices[index] = p1;
+                sound('cat');
                 if(isWinner()){
                     message.textContent = 'Cats Won';
                     message.style.display = 'block';
@@ -42,6 +44,7 @@ const turn = (cell, index) => {
                 cell.appendChild(dog);
                 cell.style.backgroundColor = 'whitesmoke';
                 choices[index] = p2;
+                sound('dog');
                 if(isWinner()){
                     message.textContent = 'Dogs won';
                     message.style.display = 'block';
@@ -58,6 +61,7 @@ const turn = (cell, index) => {
         }
     }
 }
+// the victory message
 const winnerImg = (animal) => {
     if(animal === 'cat'){
         const catWins = document.createElement('div');
@@ -79,6 +83,7 @@ const winnerImg = (animal) => {
         message.appendChild(catWins);
     }
     else if(animal === 'dog'){
+
         const dogWins = document.createElement('div');
         dogWins.style.display = 'flex';
         dogWins.style.marginLeft = '100px';
@@ -98,7 +103,7 @@ const winnerImg = (animal) => {
         message.appendChild(dogWins);
     }
 }
-
+//create 9 elements and add an event to them
 for(let i = 0; i < 9; i++){
     const newCell = document.createElement('div');
     newCell.classList.add("cell");
@@ -106,7 +111,7 @@ for(let i = 0; i < 9; i++){
     board.appendChild(newCell);
     cells.push(newCell);
 }
-
+//check if someone has won
 const isWinner = ()=> {
     for(let winCom of winCombinations) {
         const win = [...winCom];
@@ -116,7 +121,26 @@ const isWinner = ()=> {
     }
     return false;
 }
-
+//play a song when clicking a cell
+const sound = (animal) => {
+    if(animal === 'cat'){
+        const meow = new Audio('sounds/meow.mp3');
+                meow.loop = true;
+                meow.play();
+                setTimeout(() => { 
+                    meow.pause();
+                    }, 1000)
+    } else {
+        const bark = new Audio('sounds/bark.wav');
+                bark.loop = true;
+                bark.play();
+                setTimeout(() => { 
+                    bark.pause();
+                    }, 1000) 
+    }
+    
+}
+//restart button
 restart.addEventListener('click', ()=>{
     cells.forEach(e => {
         e.textContent = '';

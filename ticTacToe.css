@@ -52,6 +52,7 @@ body .container .board .cell {
   height: 100px;
   border: 10px groove #fdad4c;
   border-radius: 10px;
+  font-size: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
